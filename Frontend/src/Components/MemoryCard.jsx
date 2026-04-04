@@ -167,7 +167,7 @@ function MemoryCard({ title, description, memoryId, addedMs, doc }) {
 
             {/* TIME */}
             <span className="text-xs flex justify-between w-full py-5 px-0 text-gray-400">
-              {addedMs ? timeCalc(addedMs) : "Time Unavailable"}
+              Last updated {addedMs ? timeCalc(addedMs) : "Time Unavailable"}
               <span className="text-xs text-gray-400">
                 Created at : {doc ? getRealDate(doc) : "Date Unavailable"}
               </span>
