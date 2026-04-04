@@ -112,6 +112,7 @@ memoryRouter.put("/updatememory/:memoryId", verifyUser, upload.array("photos"), 
         newMemory.title = title;
         newMemory.description = description;
         newMemory.addedMs = addedMs;
+        let allPics = [];
         if (photoUrls.length > 0) {
             allPics = photoUrls.map((elm) => {
                 return {
