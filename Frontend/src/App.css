@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes showBar {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+@keyframes hideBar {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: -100%;
+  }
+}
+@media screen and (width <= 360px) {
+  .userLogo {
+    height: 40px;
+  }
+  /* .srchMem {
+    padding: 10px;
+    width: auto;
+  } */
+}
