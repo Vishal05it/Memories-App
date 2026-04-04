@@ -86,7 +86,7 @@ function EditProfile() {
       gender: user.gender,
       bio: user.bio,
       age: user.age,
-      profilepic: user.profilepic,
+      profilepic: "",
     });
   }, []);
 
