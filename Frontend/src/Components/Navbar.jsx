@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAllContexts } from "../Contexts/AllContexts";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
   let {
@@ -13,7 +13,7 @@ function Navbar() {
     setCurrAnim,
     searchMemory,
   } = useAllContexts();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (theme == "light") {
       lightModeFunc();
@@ -60,7 +60,7 @@ function Navbar() {
                   </NavLink>
                 </li>
               )}
-
+              {/* 
               <li>
                 <button
                   onClick={toggleTheme}
@@ -68,7 +68,7 @@ function Navbar() {
                 >
                   🌗
                 </button>
-              </li>
+              </li> */}
             </ul>
 
             {/* LOGO */}
@@ -95,8 +95,11 @@ function Navbar() {
               <div className="relative srchMem w-30 sm:w-45 md:w-55">
                 <button
                   onClick={async () => {
-                    await searchMemory(keyword);
+                    let found = await searchMemory(keyword);
                     setKeyword("");
+                    if (!found) {
+                      navigate(`/nosearched/${keyword}`);
+                    }
                   }}
                   className="absolute left-3 top-2.5 text-gray-400"
                 >
@@ -113,7 +116,12 @@ function Navbar() {
                   className="w-full pl-9 pr-3 py-2 text-sm rounded-xl bg-white/70 dark:text-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
                 />
               </div>
-
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-purple-100 dark:hover:bg-gray-800 transition"
+              >
+                🌗
+              </button>
               {/* PROFILE OR LOGIN */}
               {isLogin ? (
                 <img

@@ -89,7 +89,10 @@ function Sidebar() {
             />
             <button
               onClick={async () => {
-                await searchMemory(keyword);
+                let found = await searchMemory(keyword);
+                if (!found) {
+                  navigate(`/nosearched/${keyword}`);
+                }
                 setKeyword("");
                 setCurrAnim("hideBar");
               }}

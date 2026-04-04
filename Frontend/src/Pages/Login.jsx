@@ -36,19 +36,12 @@ function Login() {
 
       if (loginData.success) {
         successEmitter(loginData.message);
-
         setUser(loginData.user);
-
         navigate("/");
-
         localStorage.setItem("memoryUser", JSON.stringify(loginData.user));
-
         setAuthToken(loginData.authToken);
-
         localStorage.setItem("authToken", loginData.authToken);
-
         setisLogin(true);
-
         localStorage.setItem("isLoginMemory", true);
       } else errorEmitter(loginData.message);
     } catch (error) {

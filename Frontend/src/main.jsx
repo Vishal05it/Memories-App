@@ -21,12 +21,14 @@ import PasswordOTP from "./Pages/PasswordByOTP.jsx";
 import UpdateEmail from "./Pages/UpdateEmail.jsx";
 import LoaderContext from "./Contexts/LoaderContext.jsx";
 import UpdatePassword from "./Pages/UpdatePassword.jsx";
+import NoSearched from "./Pages/NoSearched.jsx";
 
 let myRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/nosearched/:keyword" element={<NoSearched />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/passwordotp" element={<PasswordOTP />} />

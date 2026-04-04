@@ -108,13 +108,18 @@ function AllContexts({ children }) {
         },
       );
       let searchData = await response.json();
+      console.log(searchData);
       if (searchData.success) {
         successEmitter(searchData.message);
         setAllMemories(searchData.searchMemories);
-      } else errorEmitter(searchData.message);
-      console.log(searchData);
+        return true;
+      } else {
+        errorEmitter(searchData.message);
+        return false;
+      }
     } catch (error) {
       console.log(error);
+      return false;
     } finally {
       setShowLoader(false);
     }
