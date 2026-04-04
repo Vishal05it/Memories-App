@@ -2,7 +2,7 @@ const multer = require("multer");
 const path = require("path");
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, "../Uploads"));
+        cb(null, "/tmp");
     },
     filename: function (req, file, cb) {
         const uniquePath = Date.now() + "_" + Math.random() * 100;
