@@ -99,7 +99,7 @@ userRouter.post("/login", async (req, res) => {
 userRouter.put("/updateprofile", verifyUser, upload.single("profilepic"), async (req, res) => {
     try {
         let newUser = await userModel.findById(req.userId);
-        let profilepic = "";
+        let profilepic = newUser.profilepic;
         let localFilePath = req.file?.path;
         profilepic = await uploadOnCloudinary(localFilePath);
         console.log("BODY:", req.body);
