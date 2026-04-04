@@ -10,8 +10,11 @@ const transport = require("../mailer");
 userRouter.post("/signup", upload.single("profilepic"), async (req, res) => {
     try {
         let newUser = {};
-        let localFilePath = req.file?.path;
-        let profilepic = await uploadOnCloudinary(localFilePath);
+        let profilepic = "";
+        if (req.file) {
+            let localFilePath = req.file?.path;
+            profilepic = await uploadOnCloudinary(localFilePath);
+        }
         let { email, name, password, age, gender, phoneno, city, state, zipcode, bio } = req.body;
         newUser.email = email;
         let userExist = await userModel.findOne({ email });
