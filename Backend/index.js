@@ -11,7 +11,7 @@ const photoRouter = require("./Routes/photo.router");
 app.use(express.json());
 app.use(cors
     ({
-        origin: "http://localhost:5173",
+        origin: "https://memories-app-jk5b.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"]
     })
 );
@@ -19,6 +19,6 @@ app.use("/user/api", userRouter);
 app.use("/memory/api", memoryRouter);
 app.use("/photo/api", photoRouter);
 app.listen(PORT, () => {
-    console.log(`Server is runnning at : http://localhost:${PORT}`);
+    console.log(`Server is runnning on Port : ${PORT}`);
 });
 connectToDB();
