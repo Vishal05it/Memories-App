@@ -56,7 +56,7 @@ function MemoryImage({ photoSrc, memoryId, photoId }) {
             onClick={async () => {
               await deletePhoto();
             }}
-            className="absolute top-2 right-2 p-1.5 rounded-full bg-red-500 text-white opacity-0 group-hover:opacity-100 transition hover:bg-red-600"
+            className="absolute top-2 right-2 p-1.5 rounded-full bg-red-500 text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition hover:bg-red-600"
           >
             <Trash size={16} />
           </button>
