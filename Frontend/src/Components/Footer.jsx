@@ -94,7 +94,7 @@ function Footer() {
                 target="_blank"
                 className="p-2 rounded-lg hover:bg-purple-100 dark:hover:bg-gray-800 transition cursor-pointer"
               >
-                <i style={{ color: "black" }} class="fa-brands fa-github"></i>
+                <i className="fa-brands fa-github dark:bg-white dark:text-black bg-black text-white"></i>
               </a>
 
               <a
