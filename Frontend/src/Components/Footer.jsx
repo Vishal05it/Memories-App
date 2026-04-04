@@ -63,7 +63,7 @@ function Footer() {
               </li>
               <li className="hover:text-purple-600 cursor-pointer">
                 <a target="_blank" href="https://my-portfolio-7ffo.vercel.app/">
-                  About the Creator
+                  <i class="fa-solid fa-circle-info"></i> About the Creator
                 </a>
               </li>
             </ul>
