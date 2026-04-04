@@ -11,10 +11,8 @@ userRouter.post("/signup", upload.single("profilepic"), async (req, res) => {
     try {
         let newUser = {};
         let profilepic = "";
-        if (req.file) {
-            let localFilePath = req.file?.path;
-            profilepic = await uploadOnCloudinary(localFilePath);
-        }
+        let localFilePath = req.file?.path;
+        profilepic = await uploadOnCloudinary(localFilePath);
         let { email, name, password, age, gender, phoneno, city, state, zipcode, bio } = req.body;
         newUser.email = email;
         let userExist = await userModel.findOne({ email });
@@ -24,6 +22,8 @@ userRouter.post("/signup", upload.single("profilepic"), async (req, res) => {
                 success: false,
             });
         }
+        console.log("BODY:", req.body);
+        console.log("FILE:", req.file);
         newUser.name = name;
         if (age) newUser.age = age;
         if (gender) newUser.gender = gender;
@@ -100,10 +100,10 @@ userRouter.put("/updateprofile", verifyUser, upload.single("profilepic"), async 
     try {
         let newUser = await userModel.findById(req.userId);
         let profilepic = "";
-        if (req.file) {
-            let localFilePath = req.file?.path;
-            profilepic = await uploadOnCloudinary(localFilePath);
-        }
+        let localFilePath = req.file?.path;
+        profilepic = await uploadOnCloudinary(localFilePath);
+        console.log("BODY:", req.body);
+        console.log("FILE:", req.file);
         let { name, age, gender, phoneno, city, state, zipcode, bio } = req.body;
         if (name) newUser.name = name;
         if (age) newUser.age = age;
