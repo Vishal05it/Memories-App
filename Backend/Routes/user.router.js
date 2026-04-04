@@ -99,8 +99,11 @@ userRouter.post("/login", async (req, res) => {
 userRouter.put("/updateprofile", verifyUser, upload.single("profilepic"), async (req, res) => {
     try {
         let newUser = await userModel.findById(req.userId);
-        let localFilePath = req.file?.path;
-        let profilepic = await uploadOnCloudinary(localFilePath);
+        let profilepic = "";
+        if (req.file) {
+            let localFilePath = req.file?.path;
+            profilepic = await uploadOnCloudinary(localFilePath);
+        }
         let { name, age, gender, phoneno, city, state, zipcode, bio } = req.body;
         if (name) newUser.name = name;
         if (age) newUser.age = age;
