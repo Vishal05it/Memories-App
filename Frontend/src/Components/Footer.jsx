@@ -57,7 +57,8 @@ function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="hover:text-purple-600 cursor-pointer">
                 <a href="mailto:www.vishal.tiwari007@gmail.com">
-                  Email us : www.vishal.tiwari007@gmail.com
+                  <i class="fa-solid fa-envelope"></i> :
+                  www.vishal.tiwari007@gmail.com
                 </a>
               </li>
               <li className="hover:text-purple-600 cursor-pointer">
