@@ -22,6 +22,7 @@ import UpdateEmail from "./Pages/UpdateEmail.jsx";
 import LoaderContext from "./Contexts/LoaderContext.jsx";
 import UpdatePassword from "./Pages/UpdatePassword.jsx";
 import NoSearched from "./Pages/NoSearched.jsx";
+import Error from "./Pages/Error.jsx";
 
 let myRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ let myRouter = createBrowserRouter(
       <Route path="/updatepassword" element={<UpdatePassword />} />
       <Route path="/creatememory" element={<CreateMemory />} />
       <Route path="/editmemory/:memoryId" element={<EditMemory />} />
+      <Route path="*" element={<Error />} />
     </Route>,
   ),
 );
