@@ -103,7 +103,7 @@ function Footer() {
               >
                 <i
                   style={{
-                    color: "dark-blue",
+                    color: "blue",
                   }}
                   class="fa-brands fa-linkedin"
                 ></i>
