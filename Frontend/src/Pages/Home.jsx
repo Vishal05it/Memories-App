@@ -35,26 +35,28 @@ function Home() {
           id="topBar"
           className="min-h-screen w-full relative px-4 py-8 bg-linear-to-br from-rose-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-purple-950 dark:to-black transition-colors duration-500"
         >
-          <div>
-            <CircleArrowUp
-              onClick={() => {
-                document
-                  .querySelector("#topBar")
-                  .scrollIntoView({ behavior: "smooth" });
-              }}
-              className="text-gray-100 bg-indigo-600"
-              style={{
-                position: "fixed",
-                bottom: "5%",
-                right: "5%",
-                cursor: "pointer",
-                height: "40px",
-                width: "40px",
-                borderRadius: "50%",
-                padding: "0",
-              }}
-            />
-          </div>
+          {isLogin && (
+            <div>
+              <CircleArrowUp
+                onClick={() => {
+                  document
+                    .querySelector("#topBar")
+                    .scrollIntoView({ behavior: "smooth" });
+                }}
+                className="text-gray-100 bg-indigo-600"
+                style={{
+                  position: "fixed",
+                  bottom: "5%",
+                  right: "5%",
+                  cursor: "pointer",
+                  height: "40px",
+                  width: "40px",
+                  borderRadius: "50%",
+                  padding: "0",
+                }}
+              />
+            </div>
+          )}
           <div className="max-w-7xl mx-auto">
             {isLogin ? (
               allMemories.length > 0 ? (
