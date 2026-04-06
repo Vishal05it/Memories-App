@@ -53,6 +53,7 @@ function Home() {
                   width: "40px",
                   borderRadius: "50%",
                   padding: "0",
+                  zIndex: "55",
                 }}
               />
             </div>
