@@ -39,7 +39,6 @@ function UpdatePassword() {
 
       if (resetPass.success) {
         successEmitter(resetPass.message);
-
         navigate("/");
       } else errorEmitter(resetPass.message);
     } catch (error) {

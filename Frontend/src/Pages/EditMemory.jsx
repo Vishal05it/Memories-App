@@ -46,7 +46,7 @@ function EditMemory() {
       let allPicsData = await response.json();
 
       if (allPicsData.success) {
-        successEmitter(allPicsData.message);
+        //successEmitter(allPicsData.message);
         setPhotos(allPicsData.allPics);
       } else errorEmitter(allPicsData.message);
     } catch (error) {

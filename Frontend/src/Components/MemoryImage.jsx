@@ -28,7 +28,7 @@ function MemoryImage({ photoSrc, memoryId, photoId }) {
       let delPhotoData = await response.json();
 
       if (delPhotoData.success) {
-        successEmitter(delPhotoData.message);
+        //successEmitter(delPhotoData.message);
         await getOneMemory(memoryId);
       } else errorEmitter(delPhotoData.message);
     } catch (error) {

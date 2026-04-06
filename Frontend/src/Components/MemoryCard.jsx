@@ -59,7 +59,7 @@ function MemoryCard({ title, description, memoryId, addedMs, doc }) {
       let allPicsData = await response.json();
 
       if (allPicsData.success) {
-        successEmitter(allPicsData.message);
+        //successEmitter(allPicsData.message);
         setPhotos(allPicsData.allPics);
       } else errorEmitter(allPicsData.message);
     } catch (error) {
@@ -83,7 +83,6 @@ function MemoryCard({ title, description, memoryId, addedMs, doc }) {
       );
 
       let deleteData = await response.json();
-
       if (deleteData.success) {
         successEmitter(deleteData.message);
         await getAllMemories();

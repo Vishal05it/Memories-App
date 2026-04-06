@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { errorEmitter, successEmitter } from "../emitter";
 import Loader from "../Loader/Loader";
 import { useLoader } from "../Contexts/LoaderContext";
+import { useAllContexts } from "../Contexts/AllContexts";
 
 function Signup() {
   const navigate = useNavigate();
@@ -23,56 +24,58 @@ function Signup() {
   });
 
   let { showLoader, setShowLoader } = useLoader();
-
+  let { isLogin } = useAllContexts();
   let onChangeFunc = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   let signUpFunction = async () => {
-    try {
-      let formData = new FormData();
+    if (!isLogin) {
+      try {
+        let formData = new FormData();
 
-      formData.append("email", user.email);
-      formData.append("password", user.password);
-      formData.append("name", user.name);
-      formData.append("city", user.city);
-      formData.append("zipcode", user.zipcode);
-      formData.append("state", user.state);
-      formData.append("gender", user.gender);
-      formData.append("phoneno", user.phoneno);
-      formData.append("bio", user.bio);
-      formData.append("age", user.age);
-      formData.append("profilepic", user.profilepic);
+        formData.append("email", user.email);
+        formData.append("password", user.password);
+        formData.append("name", user.name);
+        formData.append("city", user.city);
+        formData.append("zipcode", user.zipcode);
+        formData.append("state", user.state);
+        formData.append("gender", user.gender);
+        formData.append("phoneno", user.phoneno);
+        formData.append("bio", user.bio);
+        formData.append("age", user.age);
+        formData.append("profilepic", user.profilepic);
 
-      if (user.name.length < 2) {
-        console.log("Name must be greater than 2 characters");
-        return;
+        if (user.name.length < 2) {
+          console.log("Name must be greater than 2 characters");
+          return;
+        }
+
+        if (user.password.length < 8) {
+          console.log("Password must be greater than 8 characters");
+          return;
+        }
+
+        setShowLoader(true);
+
+        let response = await fetch(`${baseURL}/user/api/signup`, {
+          method: "POST",
+          body: formData,
+        });
+
+        let signUpData = await response.json();
+
+        if (signUpData.success) {
+          successEmitter(signUpData.message);
+
+          navigate("/");
+        } else errorEmitter(signUpData.message);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setShowLoader(false);
       }
-
-      if (user.password.length < 8) {
-        console.log("Password must be greater than 8 characters");
-        return;
-      }
-
-      setShowLoader(true);
-
-      let response = await fetch(`${baseURL}/user/api/signup`, {
-        method: "POST",
-        body: formData,
-      });
-
-      let signUpData = await response.json();
-
-      if (signUpData.success) {
-        successEmitter(signUpData.message);
-
-        navigate("/");
-      } else errorEmitter(signUpData.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setShowLoader(false);
-    }
+    } else errorEmitter("Please logout first to create a bew account!");
   };
 
   return (

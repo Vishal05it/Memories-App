@@ -7,7 +7,7 @@ import Loader from "../Loader/Loader";
 import { useLoader } from "../Contexts/LoaderContext";
 
 function Login() {
-  let { user, setUser, setAuthToken, setisLogin } = useAllContexts();
+  let { user, setUser, setAuthToken, setisLogin, isLogin } = useAllContexts();
   const navigate = useNavigate();
 
   let [currUser, setCurrUser] = useState({
@@ -18,37 +18,39 @@ function Login() {
   let { showLoader, setShowLoader } = useLoader();
 
   let loginFunc = async () => {
-    try {
-      setShowLoader(true);
+    if (!isLogin) {
+      try {
+        setShowLoader(true);
 
-      let response = await fetch(`${baseURL}/user/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: currUser.email,
-          password: currUser.password,
-        }),
-      });
+        let response = await fetch(`${baseURL}/user/api/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: currUser.email,
+            password: currUser.password,
+          }),
+        });
 
-      let loginData = await response.json();
+        let loginData = await response.json();
 
-      if (loginData.success) {
-        successEmitter(loginData.message);
-        setUser(loginData.user);
-        navigate("/");
-        localStorage.setItem("memoryUser", JSON.stringify(loginData.user));
-        setAuthToken(loginData.authToken);
-        localStorage.setItem("authToken", loginData.authToken);
-        setisLogin(true);
-        localStorage.setItem("isLoginMemory", true);
-      } else errorEmitter(loginData.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setShowLoader(false);
-    }
+        if (loginData.success) {
+          successEmitter(loginData.message);
+          setUser(loginData.user);
+          navigate("/");
+          localStorage.setItem("memoryUser", JSON.stringify(loginData.user));
+          setAuthToken(loginData.authToken);
+          localStorage.setItem("authToken", loginData.authToken);
+          setisLogin(true);
+          localStorage.setItem("isLoginMemory", true);
+        } else errorEmitter(loginData.message);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setShowLoader(false);
+      }
+    } else errorEmitter("Log out first for logging into another account!");
   };
 
   let onChangeFunc = (e) => {

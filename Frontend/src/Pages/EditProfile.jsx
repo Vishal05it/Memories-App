@@ -35,7 +35,7 @@ function EditProfile() {
       });
 
       let updateProfileData = await response.json();
-      console.log(updateProfileData);
+      //console.log(updateProfileData);
       if (updateProfileData.success) {
         successEmitter(updateProfileData.message);
 

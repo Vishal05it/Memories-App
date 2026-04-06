@@ -60,9 +60,9 @@ function AllContexts({ children }) {
       let getData = await response.json();
       if (getData.success) {
         setAllMemories(getData.allMemories);
-        successEmitter(getData.message);
+        // successEmitter(getData.message);
       } else errorEmitter(getData.message);
-      console.log(getData);
+      //  console.log(getData);
     } catch (error) {
       console.log(error);
     } finally {
@@ -84,10 +84,10 @@ function AllContexts({ children }) {
       );
       let getOneData = await response.json();
       if (getOneData.success) {
-        successEmitter(getOneData.message);
+        // successEmitter(getOneData.message);
         setCurrMemory(getOneData.oneMemory);
       } else errorEmitter(getOneData.message);
-      console.log(getOneData);
+      // console.log(getOneData);
     } catch (error) {
       console.log(error);
     } finally {
@@ -108,7 +108,7 @@ function AllContexts({ children }) {
         },
       );
       let searchData = await response.json();
-      console.log(searchData);
+      // console.log(searchData);
       if (searchData.success) {
         successEmitter(searchData.message);
         setAllMemories(searchData.searchMemories);
