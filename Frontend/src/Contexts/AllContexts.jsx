@@ -61,7 +61,7 @@ function AllContexts({ children }) {
       if (getData.success) {
         setAllMemories(getData.allMemories);
         // successEmitter(getData.message);
-      } else errorEmitter(getData.message);
+      }
       //  console.log(getData);
     } catch (error) {
       console.log(error);
