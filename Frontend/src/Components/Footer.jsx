@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAllContexts } from "../Contexts/AllContexts";
 
 function Footer() {
+  let { isLogin } = useAllContexts();
   return (
     <footer className=" border-t border-gray-200 dark:border-gray-700 bg-linear-to-br from-rose-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-purple-950 dark:to-black text-gray-700 dark:text-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -29,21 +31,39 @@ function Footer() {
               </h3>
             </NavLink>
             <ul className="space-y-2 text-sm">
-              <NavLink to="/creatememory">
-                <li className="hover:text-purple-600 mb-2 cursor-pointer">
-                  Create Memory
-                </li>
-              </NavLink>
-              <NavLink to="/profilepage">
-                <li className="hover:text-purple-600 mb-2 cursor-pointer">
-                  View Profile
-                </li>
-              </NavLink>
-              <NavLink to="/editprofile">
-                <li className="hover:text-purple-600 mb-2 cursor-pointer">
-                  Edit Profile
-                </li>
-              </NavLink>
+              {isLogin ? (
+                <NavLink to="/creatememory">
+                  <li className="hover:text-purple-600 mb-2 cursor-pointer">
+                    Create Memory
+                  </li>
+                </NavLink>
+              ) : (
+                <NavLink to="/login">
+                  <li className="hover:text-purple-600 mb-2 cursor-pointer">
+                    Log In
+                  </li>
+                </NavLink>
+              )}
+              {isLogin ? (
+                <NavLink to="/profilepage">
+                  <li className="hover:text-purple-600 mb-2 cursor-pointer">
+                    View Profile
+                  </li>
+                </NavLink>
+              ) : (
+                <NavLink to="/signup">
+                  <li className="hover:text-purple-600 mb-2 cursor-pointer">
+                    Sign Up
+                  </li>
+                </NavLink>
+              )}
+              {isLogin && (
+                <NavLink to="/editprofile">
+                  <li className="hover:text-purple-600 mb-2 cursor-pointer">
+                    Edit Profile
+                  </li>
+                </NavLink>
+              )}
               {/* <li className="hover:text-purple-600 cursor-pointer"></li> */}
             </ul>
           </div>
