@@ -30,10 +30,10 @@ function MemoryCard({ title, description, memoryId, addedMs, doc }) {
     ];
     let month = docString.slice(5, 7);
     let day = docString.slice(8, 10);
-    console.log(day);
+    // console.log(day);
     let realMonth = allMonths[month - 1];
-    console.log(realMonth);
-    console.log(year);
+    // console.log(realMonth);
+    //console.log(year);
     return `${day}/${realMonth}/${year}`;
   };
   useEffect(() => {

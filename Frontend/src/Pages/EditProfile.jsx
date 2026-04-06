@@ -174,7 +174,7 @@ function EditProfile() {
               />
 
               <input
-                type="text"
+                type="number"
                 name="phoneno"
                 value={userState.phoneno}
                 onChange={onChangeFunc}
